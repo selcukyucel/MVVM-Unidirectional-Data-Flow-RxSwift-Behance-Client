@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SocialCell" id="gTV-IL-0wX" customClass="SocialCell" customModule="Behance_Client" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="391" height="60"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="391" height="60"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5A6-dM-JhJ">
+                        <rect key="frame" x="198" y="0.0" width="120" height="60"/>
+                        <color key="backgroundColor" red="0.1096437546" green="0.59485232440000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="60" id="aHw-ei-9Bk"/>
+                            <constraint firstAttribute="width" secondItem="5A6-dM-JhJ" secondAttribute="height" multiplier="2:1" id="dMs-SI-7B8"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <state key="normal" title="Web">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                        <connections>
+                            <action selector="tapURL:" destination="gTV-IL-0wX" eventType="touchUpInside" id="Cyo-8k-odC"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FKr-EY-3E1">
+                        <rect key="frame" x="74" y="0.0" width="120" height="60"/>
+                        <color key="backgroundColor" red="0.1096437546" green="0.59485232440000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="60" id="Vug-Y6-cPg"/>
+                            <constraint firstAttribute="width" secondItem="FKr-EY-3E1" secondAttribute="height" multiplier="2:1" id="cOg-sa-GUf"/>
+                        </constraints>
+                        <state key="normal" title="Twitter"/>
+                        <connections>
+                            <action selector="tapTwitter:" destination="gTV-IL-0wX" eventType="touchUpInside" id="A6H-yc-Ayg"/>
+                        </connections>
+                    </button>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="5A6-dM-JhJ" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="XwK-4Z-WFK"/>
+                <constraint firstItem="FKr-EY-3E1" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="bOv-td-KtN"/>
+                <constraint firstItem="5A6-dM-JhJ" firstAttribute="leading" secondItem="FKr-EY-3E1" secondAttribute="trailing" constant="4" id="cpH-gw-U6B"/>
+                <constraint firstItem="FKr-EY-3E1" firstAttribute="width" secondItem="5A6-dM-JhJ" secondAttribute="width" id="dLP-mN-8YJ"/>
+                <constraint firstItem="FKr-EY-3E1" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="74" id="gIl-y1-Kpp"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="391" height="60"/>
+            <point key="canvasLocation" x="152.80000000000001" y="190.70464767616193"/>
+        </collectionViewCell>
+    </objects>
+</document>
