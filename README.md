@@ -1,9 +1,9 @@
 # MVVM-Unidirectional-Data-Flow-RxSwift-Behance-Client
 
          Behance client to be
-         I wanted to use/show different approaches in this first version which has been done quickly.
+         I wanted to use/show different approaches in this first version.
          Please read below to see what has been done, how it has been done.
-         You will see what I will do for version 2 soon.
+         You will see todos for version 2 soon.
          
          Currently version 1
          - App has been developed to use different kind of approaches to create views, data flow, 
