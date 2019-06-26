@@ -14,6 +14,7 @@ enum AuthScreen {
     case profile(ProfileViewState)
     case projects
     case creativesToFollow
+    case project(ProjectViewState)
     
 }
 

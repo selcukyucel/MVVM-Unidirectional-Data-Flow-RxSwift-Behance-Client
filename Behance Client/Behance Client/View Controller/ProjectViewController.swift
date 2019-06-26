@@ -18,7 +18,7 @@ class ProjectViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var titleLabel: UILabel!
     
-    let viewModel = ProjectViewModel()
+    var viewModel   : ProjectViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +57,7 @@ class ProjectViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
         NotificationCenter.default.addObserver(self, selector: #selector(goToProfile(notification:)), name: NSNotification.Name(rawValue: "UserAction"), object: nil)
         
         
@@ -85,4 +86,6 @@ extension ProjectViewController : UICollectionViewDelegateFlowLayout {
         return item.size(ofCell: collectionView)
         
     }
+    
+    
 }

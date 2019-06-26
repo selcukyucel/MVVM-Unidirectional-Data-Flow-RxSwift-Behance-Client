@@ -24,14 +24,18 @@ class CollectionCellConfigurator<CellType:ConfigurableCell, DataType>: CellConfi
     static var reuseID: String { return String(describing: CellType.self) }
     
     let item : DataType
-    
+    var cell : CellType!
     
     init(item:DataType){
         self.item = item
     }
     
     func configure(cell: UIView) {
-        (cell as! CellType).configure(data: item)
+        
+        self.cell = cell as? CellType
+        
+        self.cell.configure(data: item)
+        
     }
     
     func size(ofCell collectionView: UICollectionView) -> CGSize {
@@ -56,5 +60,9 @@ class CollectionCellConfigurator<CellType:ConfigurableCell, DataType>: CellConfi
         }
         
         return CGSize(width: width, height: 20)
+    }
+    
+    func view() -> UIView {
+        return self.cell
     }
 }

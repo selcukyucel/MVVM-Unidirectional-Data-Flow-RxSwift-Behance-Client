@@ -33,6 +33,9 @@ func screenReducer(action:Action, screen:AuthScreen) -> AuthScreen{
     case _ as CreativesToFollowAction:
         return .creativesToFollow
         
+    case let action as ProjectAction:
+        return .project(ProjectViewState(project: action.project))
+        
     default:
         break
     }

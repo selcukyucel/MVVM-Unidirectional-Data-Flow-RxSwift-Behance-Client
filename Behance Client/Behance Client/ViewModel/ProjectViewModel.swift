@@ -12,17 +12,14 @@ import RxDataSources
 import RxCocoa
 
 final class ProjectViewModel : ViewModelType {
- 
+    
+    let disposeBag  = DisposeBag()
     var project     : Project!
     var cellItems   : [CellConfigurator] = []
     
-    init() {
-        if let project = getProject() {
-            self.project = project
-        }
+    init(project:Project) {
+        self.project    = project
     }
-    
-    let disposeBag  = DisposeBag()
     
     struct Input {
         let trigger : Driver<Void>
@@ -33,7 +30,7 @@ final class ProjectViewModel : ViewModelType {
         let datasource  : Driver<[SectionModel<String,CellConfigurator>]>
     }
     
-    func transform(input: ProjectViewModel.Input) -> ProjectViewModel.Output {
+    func transform(input: Input) -> Output {
         
         let title   = Driver<String>.just(self.project.name)
         

@@ -33,14 +33,11 @@ class LaunchViewController: UIViewController {
                 break
                 
             case .profile(let profileViewState):
-                print(profileViewState)
                 
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                if let profileVC   = self?.container.makeProfileViewController(viewState: profileViewState) {
+                    self?.navigationController?.pushViewController(profileVC, animated: true)
+                }
                 
-                let profileVC   = storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
-                
-                self?.navigationController?.pushViewController(profileVC, animated: true)
-             
             case .projects:
                 self?.alert(message: "Projects will developed soon")
                 
@@ -48,7 +45,8 @@ class LaunchViewController: UIViewController {
             case .creativesToFollow:
                 self?.alert(message: "Creatives to Follow will developed soon")
                 
-                
+            default:
+                break
             }
         }).disposed(by: disposeBag)
     }

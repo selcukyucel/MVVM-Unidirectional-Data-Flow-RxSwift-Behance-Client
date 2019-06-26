@@ -14,6 +14,8 @@ class ProjectItemCell: UICollectionViewCell, ConfigurableCell {
     @IBOutlet weak var projectNameLabel: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    var model : ProjectCellItemModel!
+    
     var isLoading: Bool {
         get { return activityIndicator.isAnimating }
         set {
@@ -34,9 +36,12 @@ class ProjectItemCell: UICollectionViewCell, ConfigurableCell {
     
     
     func configure(data: ProjectCellItemModel) {
-        projectNameLabel.text   = data.name
+        
+        self.model    = data
+        
+        projectNameLabel.text   = model.name
 
-        let operation = NetworkImageOperation (string: data.imageURL)
+        let operation = NetworkImageOperation (string: model.imageURL)
         
         operation?.completionBlock = {
             DispatchQueue.main.async {

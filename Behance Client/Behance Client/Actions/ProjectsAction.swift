@@ -12,5 +12,4 @@ import ReSwift
 struct ProjectsAction : Action{
     
     
-    
 }

@@ -16,7 +16,11 @@ protocol DependencyProvider {
 }
 
 protocol ProfileViewControllerFactory {
-    func makeProfileViewController() -> ProfileViewController
+    func makeProfileViewController(viewState:ProfileViewState) -> ProfileViewController
+}
+
+protocol ProfileViewModelFactory {
+    func makeProfileViewModel(screen: Observable<AuthScreen>, viewState:ProfileViewState) -> ProfileViewModel
 }
 
 protocol AppDependencyProvider  {
@@ -24,8 +28,17 @@ protocol AppDependencyProvider  {
 }
 
 protocol LaunchDependencyProvider:ProfileViewControllerFactory {
-    func makeViewModel()             -> LaunchViewModel
     func makeObservableViewState()   -> Observable<LaunchViewState>
     func makeScreenObservable()      -> Observable<AuthScreen>
     
 }
+
+protocol ProjectViewControllerFactory {
+    func makeProjectViewController(viewState:ProjectViewState) -> ProjectViewController
+}
+
+protocol ProfileViewDependencyProvider : ProfileViewModelFactory, ProjectViewControllerFactory, DependencyProvider {
+    
+}
+
+

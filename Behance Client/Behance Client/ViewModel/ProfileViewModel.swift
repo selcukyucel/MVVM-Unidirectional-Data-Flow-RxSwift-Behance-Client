@@ -7,37 +7,26 @@
 //
 
 import Foundation
+import RxSwift
+import RxCocoa
+import RxDataSources
 
-class ProfileViewModel{
+class ProfileViewModel {
+    
+    let screen      : Observable<AuthScreen>
+    let viewState   : Observable<ProfileViewState>
     
     var dataSource : [[CellConfigurator]] = []
     
-    var user : User?{
-        didSet {
-            guard user != nil else {
-                return
-            }
-            
-            setup()
-        }
+    init(screen: Observable<AuthScreen>, viewState:Observable<ProfileViewState>) {
+        self.screen     = screen
+        self.viewState  = viewState
     }
     
-    var projects : [Project]?{
-        didSet {
-            guard projects != nil else {
-                return
-            }
-            
-            addProjects()
-        }
-    }
-    
-    
-    
-    func setup(){
+    func setup(user:User){
         
-        let viewItems : [CellConfigurator] = [ProfileBasicConfigurator.init(item: ProfileBasicModel(data: user!)),
-                                              SocialConfigurator.init(item: SocialItemModel(data: user!))
+        let viewItems : [CellConfigurator] = [ProfileBasicConfigurator.init(item: ProfileBasicModel(data: user)),
+                                              SocialConfigurator.init(item: SocialItemModel(data: user))
                                                 ]
         
         dataSource.append(viewItems)
@@ -46,14 +35,15 @@ class ProfileViewModel{
     
     func addProjects(){
         
-        var items : [CellConfigurator] = []
-        
-        projects?.forEach({ (project) in
-            items.append(ProjectConfigurator.init(item: ProjectCellItemModel(data: project)))
-        })
-        
-        dataSource.append(items)
-        
+        if let projects = getProjects(){
+            
+            var items : [CellConfigurator] = []
+            
+            projects.forEach({ (project) in
+                items.append(ProjectConfigurator.init(item: ProjectCellItemModel(data: project)))
+            })
+            
+            dataSource.append(items)
+        }
     }
-    
 }

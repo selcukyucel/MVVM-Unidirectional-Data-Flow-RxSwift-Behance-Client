@@ -14,8 +14,12 @@ struct ProjectCellItemModel : CellItemModel{
     
     var imageURL    : String!
     var name        : String!
+    var project     : Project
     
     init(data:ItemModel) {
+        
+        self.project    = data
+        
         self.name       = data.name
         self.imageURL   = data.coverImage
         

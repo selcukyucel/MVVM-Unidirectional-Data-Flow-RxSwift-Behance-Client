@@ -9,7 +9,7 @@
 import Foundation
 
 
-struct Project {
+struct Project : Equatable{
     
     var pid         : Int!
     var name        : String!
@@ -75,6 +75,10 @@ struct Project {
             
         }
 
+    }
+    
+    static func==(lhs:Project, rhs:Project) -> Bool{
+        return lhs.pid == rhs.pid
     }
     
 }

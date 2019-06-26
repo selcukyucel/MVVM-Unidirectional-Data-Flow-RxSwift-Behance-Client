@@ -38,11 +38,18 @@ class LaunchDependencyContainer: LaunchDependencyProvider {
         }.distinctUntilChanged()
     }
     
-    func makeProfileViewController() -> ProfileViewController {
+    func makeProfileViewController(viewState: ProfileViewState) -> ProfileViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         let profileVC   = storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
         
+        let dependencyContainer = ProfileViewDependencyContainer(store: self.store)
+        
+        profileVC.viewModel     = dependencyContainer.makeProfileViewModel(screen: makeScreenObservable(), viewState: viewState)
+        
+        profileVC.container     = dependencyContainer
+        
         return profileVC
     }
+    
 }

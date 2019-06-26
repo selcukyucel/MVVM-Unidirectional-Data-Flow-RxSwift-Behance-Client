@@ -25,4 +25,6 @@ protocol CellConfigurator {
     func configure(cell:UIView)
     
     func size(ofCell collectionView:UICollectionView) -> CGSize
+    
+    func view() -> UIView
 }

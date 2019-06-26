@@ -23,19 +23,23 @@ class ProjectOwnerCell: UICollectionViewCell {
         
         nameLabel.text = user.firstName
         
-        let operation = NetworkImageOperation(string: user.profilePicture)
-        
-        operation?.completionBlock = {
-            DispatchQueue.main.async {
-                
-                if let image = operation?.image {
-                    self.profileImageView.image = image
+        if let profilePicture = user.profilePicture {
+            let operation = NetworkImageOperation(string: profilePicture)
+            
+            operation?.completionBlock = {
+                DispatchQueue.main.async {
+                    
+                    if let image = operation?.image {
+                        self.profileImageView.image = image
+                    }
+                    
                 }
-                
             }
+            
+            operation?.start()
         }
         
-        operation?.start()
+        
         
     }
     
