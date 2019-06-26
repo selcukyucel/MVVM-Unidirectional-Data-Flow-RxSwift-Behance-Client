@@ -16,6 +16,7 @@ class LaunchDependencyContainer: LaunchDependencyProvider {
     
     init(store:Store<AppState>) {
         self.store      = store
+        
     }
     
     func makeViewModel() -> LaunchViewModel {

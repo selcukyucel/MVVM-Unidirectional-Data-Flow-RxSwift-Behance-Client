@@ -26,11 +26,22 @@ class ProfileViewDependencyContainer : ProfileViewDependencyProvider {
         
         let storyboard  = UIStoryboard(name: "Main", bundle: nil)
         
-        let vc          = storyboard.instantiateViewController(withIdentifier: "ProjectViewController") as! ProjectViewController
+        let vc                  = storyboard.instantiateViewController(withIdentifier: "ProjectViewController") as! ProjectViewController
         
-        vc.viewModel    = ProjectViewModel(project: viewState.project)
+        let dependencyContainer = ProjectDependencyContainer(store:self.reduxStore)
+        
+        vc.viewModel            = dependencyContainer.makeProjectViewModel(screen: makeScreenObservable(), viewState: viewState)
+        
+        vc.container            = dependencyContainer
         
         return vc
+        
+    }
+
+    func makeScreenObservable() -> Observable<AuthScreen> {
+        return reduxStore.makeObservable(){ appState -> AuthScreen in
+            return appState.screen
+            }.distinctUntilChanged()
     }
     
 }

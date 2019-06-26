@@ -13,16 +13,20 @@ import RxCocoa
 
 final class ProjectViewModel : ViewModelType {
     
+    let screen      : Observable<AuthScreen>
+    let viewState   : Observable<ProjectViewState>
+    
     let disposeBag  = DisposeBag()
-    var project     : Project!
     var cellItems   : [CellConfigurator] = []
     
-    init(project:Project) {
-        self.project    = project
+    init(screen:Observable<AuthScreen>, viewState:Observable<ProjectViewState>) {
+        self.screen     = screen
+        self.viewState  = viewState
     }
     
     struct Input {
         let trigger : Driver<Void>
+        let project : Project
     }
     
     struct Output {
@@ -32,9 +36,9 @@ final class ProjectViewModel : ViewModelType {
     
     func transform(input: Input) -> Output {
         
-        let title   = Driver<String>.just(self.project.name)
+        let title   = Driver<String>.just(input.project.name)
         
-        let items   = setItems()
+        let items   = setProjectItems(project: input.project)
         
         let data    = Driver.just([SectionModel(model: "", items: items)])
         
@@ -42,20 +46,20 @@ final class ProjectViewModel : ViewModelType {
         
     }
     
-    private func setItems() -> [CellConfigurator]{
+    private func setProjectItems(project:Project) -> [CellConfigurator]{
         
         var items : [CellConfigurator]  = []
         
-        let coverImage                  = ProjectCoverImageConfigurator.init(item: ProjectCoverImageModel(data: self.project))
+        let coverImage                  = ProjectCoverImageConfigurator.init(item: ProjectCoverImageModel(data: project))
         items.append(coverImage)
         
-        let basicInfo                   = ProjectBasicInfoConfigurator.init(item: ProjectBasicInfoItemModel(data: self.project))
+        let basicInfo                   = ProjectBasicInfoConfigurator.init(item: ProjectBasicInfoItemModel(data: project))
         items.append(basicInfo)
         
-        let fields                      = ProjectFieldsConfigurator.init(item: ProjectFieldsModel(data: self.project))
+        let fields                      = ProjectFieldsConfigurator.init(item: ProjectFieldsModel(data: project))
         items.append(fields)
         
-        let owners                      = ProjectOwnersConfigurator.init(item: ProjectOwnersModel(data: self.project))
+        let owners                      = ProjectOwnersConfigurator.init(item: ProjectOwnersModel(data: project))
         items.append(owners)
         
         cellItems                       = items

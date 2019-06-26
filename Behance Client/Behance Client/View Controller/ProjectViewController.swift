@@ -13,28 +13,103 @@ import RxDataSources
 
 class ProjectViewController: UIViewController {
 
+    var disposable  : Disposable!
     let disposeBag = DisposeBag()
     
+    // UI
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var titleLabel: UILabel!
     
+    // Model
     var viewModel   : ProjectViewModel!
+    
+    //Dependency
+    var container   : ProjectDependencyContainer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        collectionView.delegate     = self 
+        // Register Cells
+        registerCells()
         
-        self.collectionView.register(name: "ProjectCoverImageCell")
-        self.collectionView.register(name: "ProjectBasicInfoCell")
-        self.collectionView.register(name: "ProjectFieldsCell")
-        self.collectionView.register(name: "ProjectOwnersCell")
+        // Subscribe View State
+        subscribeViewState()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(goToProfile(notification:)), name: NSNotification.Name(rawValue: "UserAction"), object: nil)
+        
+        subscribeScreen()
+        
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.disposable.dispose()
+    }
+    
+    @objc func goToProfile(notification: NSNotification) {
+        
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "UserAction"), object: nil)
+        
+        let user = notification.object as! User
+        
+        // Push to Profile View
+        container.reduxStore.dispatch(UserAction(user: user))
+        
+    }
+}
+
+//MARK: UICollectionViewDelegateFlowLayout
+extension ProjectViewController : UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let item    = viewModel.cellItems[indexPath.row]
+        
+        return item.size(ofCell: collectionView)
+        
+    }
+}
+
+//MARK: Funcs
+extension ProjectViewController {
+    
+    //MARK: Subscribe State
+    private func subscribeViewState(){
+        
+        viewModel.viewState.subscribe(onNext:{ [weak self] viewState in
+            self?.transform(project: viewState.project)
+        }).disposed(by: disposeBag)
+    }
+    
+    //MARK: Subscribe Screen
+    private func subscribeScreen(){
+        
+        disposable = viewModel.screen.skip(1).subscribe(onNext:{ screen in
+            switch screen {
+            case .profile(let profileViewState):
+                
+                let profileVC = self.container.makeProfileViewController(viewState: profileViewState)
+                
+                self.navigationController?.pushViewController(profileVC, animated: true)
+                
+                break
+                
+            default:
+                break
+            }
+        })
+    }
+    
+    //MARK: Transform
+    private func transform(project:Project){
         
         let viewWillAppear      = rx.sentMessage(#selector(UIViewController.viewWillAppear(_:)))
             .mapToVoid()
             .asDriverOnErrorJustComplete()
         
-        let input = ProjectViewModel.Input(trigger: Driver.merge(viewWillAppear))
+        let input = ProjectViewModel.Input(trigger: Driver.merge(viewWillAppear), project: project)
         
         let output = viewModel.transform(input: input)
         
@@ -53,39 +128,14 @@ class ProjectViewController: UIViewController {
         
         //Bind navigation bar title
         output.title.drive(self.navigationItem.rx.title).disposed(by: disposeBag)
-        
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    private func registerCells(){
+        collectionView.delegate     = self
         
-        NotificationCenter.default.addObserver(self, selector: #selector(goToProfile(notification:)), name: NSNotification.Name(rawValue: "UserAction"), object: nil)
-        
-        
+        self.collectionView.register(name: "ProjectCoverImageCell")
+        self.collectionView.register(name: "ProjectBasicInfoCell")
+        self.collectionView.register(name: "ProjectFieldsCell")
+        self.collectionView.register(name: "ProjectOwnersCell")
     }
-    
-    @objc func goToProfile(notification: NSNotification) {
-        
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "UserAction"), object: nil)
-        
-        let user = notification.object as! User
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        
-        let profileVC   = storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
-        
-        self.navigationController?.pushViewController(profileVC, animated: true)
-        
-    }
-}
-
-extension ProjectViewController : UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        let item    = viewModel.cellItems[indexPath.row]
-        
-        return item.size(ofCell: collectionView)
-        
-    }
-    
-    
 }

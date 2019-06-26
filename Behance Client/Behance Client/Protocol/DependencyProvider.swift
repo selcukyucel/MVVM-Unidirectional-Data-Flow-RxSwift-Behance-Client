@@ -27,17 +27,27 @@ protocol AppDependencyProvider  {
     func makeLaunchViewController() -> LaunchViewController
 }
 
-protocol LaunchDependencyProvider:ProfileViewControllerFactory {
-    func makeObservableViewState()   -> Observable<LaunchViewState>
+protocol LaunchDependencyProvider:ProfileViewControllerFactory, ScreenObservable {
+    func makeObservableViewState()   -> Observable<LaunchViewState> 
+}
+
+protocol ScreenObservable {
     func makeScreenObservable()      -> Observable<AuthScreen>
-    
 }
 
 protocol ProjectViewControllerFactory {
     func makeProjectViewController(viewState:ProjectViewState) -> ProjectViewController
 }
 
-protocol ProfileViewDependencyProvider : ProfileViewModelFactory, ProjectViewControllerFactory, DependencyProvider {
+protocol ProjectViewModelFactory {
+    func makeProjectViewModel(screen: Observable<AuthScreen>, viewState:ProjectViewState) -> ProjectViewModel
+}
+
+protocol ProfileViewDependencyProvider : ProfileViewModelFactory, ProjectViewControllerFactory, DependencyProvider, ScreenObservable {
+    
+}
+
+protocol ProjectViewDependencyProvider : DependencyProvider, ProjectViewModelFactory, ProfileViewControllerFactory, ScreenObservable {
     
 }
 

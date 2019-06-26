@@ -22,6 +22,29 @@ extension AuthScreen : Equatable{
     
     public static func ==(lhs:AuthScreen, rhs:AuthScreen) -> Bool{
         return false
+//        switch (lhs,rhs) {
+//        case (.none, .none):
+//            return true
+//
+//        case (.projects, .projects):
+//            return true
+//
+//        case (.creativesToFollow, .creativesToFollow):
+//            return true
+//
+//        case (.none, _), (.projects, _), (.creativesToFollow, _):
+//            return false
+//
+//        case let (.profile(l), .profile(r)):
+//            return false
+//
+//        case let (.project(l), .project(r)):
+//            return l == r
+//
+//        default:
+//            return false
+//
+//        }
     }
     
 }
@@ -29,6 +52,7 @@ extension AuthScreen : Equatable{
 struct AppState : StateType, Equatable {
     
     public var screen : AuthScreen
+    
     
     public init(screen:AuthScreen = .none){
         self.screen = screen

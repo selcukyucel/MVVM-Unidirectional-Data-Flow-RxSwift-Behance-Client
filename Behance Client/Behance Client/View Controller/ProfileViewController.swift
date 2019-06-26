@@ -12,11 +12,16 @@ import RxSwift
 
 class ProfileViewController: UIViewController {
 
+    var disposable : Disposable!
     let disposeBag  = DisposeBag()
+    
+    //Model
     var viewModel : ProfileViewModel!
+    
+    // Dependency
     var container : ProfileViewDependencyContainer!
     
-    
+    // UI
     @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
@@ -24,15 +29,17 @@ class ProfileViewController: UIViewController {
 
         // View State changes
         subscribeViewState()
-
-        // Screen changes, push/present is controlled here
-        subscribeScreen()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        // Screen changes, push/present is controlled here
+        subscribeScreen()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.disposable.dispose()
     }
     
     
@@ -62,7 +69,9 @@ extension ProfileViewController : UICollectionViewDataSource {
     }
 }
 
+//MARK: UICollectionViewDelegateFlowLayout
 extension ProfileViewController : UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         
@@ -81,7 +90,6 @@ extension ProfileViewController : UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         if section == 0 {
             return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-            
         }
         
         return UIEdgeInsets(top: 20, left: 10, bottom: 0, right: 10)
@@ -110,7 +118,40 @@ extension ProfileViewController : UICollectionViewDelegate {
 //MARK: PRIVATE FUNC
 extension ProfileViewController {
     
-    private func setupCollectionView(){
+    // Subscribe View State
+    private func subscribeViewState(){
+        viewModel.viewState.subscribe(onNext:{ [weak self] viewState in
+            
+            self?.viewModel.setup(user: viewState.user)
+            self?.viewModel.addProjects()
+            
+            self?.navigationItem.title  = viewState.user.firstName
+            
+            self?.registerCells()
+            
+        }).disposed(by: disposeBag)
+    }
+    
+    // Screen changes, push/present is controlled here
+    private func subscribeScreen(){
+        disposable = viewModel.screen.skip(1).subscribe(onNext:{ screen in
+            
+            switch screen{
+            case .project(let projectViewState):
+                
+                let projectVC = self.container.makeProjectViewController(viewState: projectViewState)
+                
+                self.navigationController?.pushViewController(projectVC, animated: true)
+                
+            default :
+                break
+            }
+            
+        })
+    }
+    
+    // UICollection Register
+    private func registerCells(){
         
         let layout = CustomCollectionViewLayout()
         
@@ -125,36 +166,5 @@ extension ProfileViewController {
         
         collectionView.dataSource = self
         collectionView.delegate = self
-    }
-    
-    // Screen changes, push/present is controlled here
-    private func subscribeScreen(){
-        viewModel.screen.subscribe(onNext:{ screen in
-            
-            switch screen{
-            case .project(let projectViewState):
-                
-                let projectVC = self.container.makeProjectViewController(viewState: projectViewState)
-                
-                self.navigationController?.pushViewController(projectVC, animated: true)
-                
-            default :
-                break
-            }
-            
-        }).disposed(by: disposeBag)
-    }
-    
-    private func subscribeViewState(){
-        viewModel.viewState.subscribe(onNext:{ [weak self] viewState in
-            
-            self?.viewModel.setup(user: viewState.user)
-            self?.viewModel.addProjects()
-            
-            self?.navigationItem.title  = viewState.user.firstName
-            
-            self?.setupCollectionView()
-            
-        }).disposed(by: disposeBag)
     }
 }

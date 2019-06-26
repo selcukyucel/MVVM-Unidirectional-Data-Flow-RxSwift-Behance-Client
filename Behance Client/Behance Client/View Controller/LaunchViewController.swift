@@ -12,44 +12,34 @@ import ReSwift
 
 class LaunchViewController: UIViewController {
 
-    
+    var disposable      : Disposable!
     let disposeBag      = DisposeBag()
+    
+    //Model
     var viewModel       : LaunchViewModel!
+    
+    //Dependency
     var container       : LaunchDependencyContainer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        subscribe()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
+        // Subscribe screen changes
+        subscribeScreen()
     }
     
     
-    // Observe screen changes
-    private func subscribe(){
-        viewModel.screen.subscribe(onNext:{ [weak self] screen in
-            switch screen {
-            case .none:
-                break
-                
-            case .profile(let profileViewState):
-                
-                if let profileVC   = self?.container.makeProfileViewController(viewState: profileViewState) {
-                    self?.navigationController?.pushViewController(profileVC, animated: true)
-                }
-                
-            case .projects:
-                self?.alert(message: "Projects will developed soon")
-                
-                
-            case .creativesToFollow:
-                self?.alert(message: "Creatives to Follow will developed soon")
-                
-            default:
-                break
-            }
-        }).disposed(by: disposeBag)
+    override func viewDidDisappear(_ animated: Bool) {
+        self.disposable.dispose()
     }
+}
+
+//MARK: UI Actions
+extension LaunchViewController {
     
     @IBAction func tapProfile(_ sender: UIButton) {
         
@@ -73,7 +63,36 @@ class LaunchViewController: UIViewController {
     }
 }
 
+//MARK: Funcs
 extension LaunchViewController {
+    
+    // Observe screen changes
+    private func subscribeScreen(){
+        
+        self.disposable = viewModel.screen.skip(1).subscribe(onNext:{ [weak self] screen in
+            switch screen {
+            case .none:
+                break
+                
+            case .profile(let profileViewState):
+                
+                if let profileVC   = self?.container.makeProfileViewController(viewState: profileViewState) {
+                    self?.navigationController?.pushViewController(profileVC, animated: true)
+                }
+                
+            case .projects:
+                self?.alert(message: "Projects will developed soon")
+                
+                
+            case .creativesToFollow:
+                self?.alert(message: "Creatives to Follow will developed soon")
+                
+            default:
+                break
+            }
+        })
+    }
+    
     //TODO: Delete this later
     private func alert(message:String){
         
@@ -86,4 +105,6 @@ extension LaunchViewController {
         self.present(alert, animated: true, completion: nil)
         
     }
+    
 }
+

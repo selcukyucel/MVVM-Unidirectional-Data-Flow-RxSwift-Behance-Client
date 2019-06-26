@@ -11,6 +11,10 @@
 		B72B819084258BFD3F15579A /* Pods_Behance_Client.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62DDF5F4C2A76C4317C79978 /* Pods_Behance_Client.framework */; };
 		C73284BBB4A99B435F41A743 /* Pods_Behance_ClientUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EB6F1D449CFBB0BBDE81CFA /* Pods_Behance_ClientUITests.framework */; };
 		E205B08B22C1522500B3B8F7 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E205B08A22C1522500B3B8F7 /* ViewModelType.swift */; };
+		E2094F0622C3701700ACB90D /* ProjectDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2094F0522C3701700ACB90D /* ProjectDependencyContainer.swift */; };
+		E2094F0722C3701700ACB90D /* ProjectDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2094F0522C3701700ACB90D /* ProjectDependencyContainer.swift */; };
+		E2094F0822C370FD00ACB90D /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F829EE22B123FF00DE6BEE /* AppState.swift */; };
+		E2094F0922C397CD00ACB90D /* DependencyProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F829F422B1254C00DE6BEE /* DependencyProvider.swift */; };
 		E20A434422C36970006250C5 /* ProjectViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20A434322C36970006250C5 /* ProjectViewState.swift */; };
 		E20A434522C36970006250C5 /* ProjectViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20A434322C36970006250C5 /* ProjectViewState.swift */; };
 		E222A03B22B0613C006CD8F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E222A03A22B0613C006CD8F0 /* AppDelegate.swift */; };
@@ -178,6 +182,7 @@
 		BDD2314402CE571F933B06A3 /* Pods-Behance ClientUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Behance ClientUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Behance ClientUITests/Pods-Behance ClientUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		E07C67F32DB82BC7DEEB3B6A /* Pods-Behance ClientUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Behance ClientUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Behance ClientUITests/Pods-Behance ClientUITests.release.xcconfig"; sourceTree = "<group>"; };
 		E205B08A22C1522500B3B8F7 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
+		E2094F0522C3701700ACB90D /* ProjectDependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDependencyContainer.swift; sourceTree = "<group>"; };
 		E20A434322C36970006250C5 /* ProjectViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectViewState.swift; sourceTree = "<group>"; };
 		E222A03722B0613C006CD8F0 /* Behance Client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Behance Client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E222A03A22B0613C006CD8F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -538,6 +543,7 @@
 				E2C32A9D22C204FD0019AA8D /* AppDependencyContainer.swift */,
 				E2C32AA022C205720019AA8D /* DependencyContainer.swift */,
 				E24649F222C2D99600060361 /* ProfileViewDependencyContainer.swift */,
+				E2094F0522C3701700ACB90D /* ProjectDependencyContainer.swift */,
 			);
 			path = Dependency;
 			sourceTree = "<group>";
@@ -857,6 +863,7 @@
 				E2D74B9522C1082100BC40C0 /* ProfileViewModel.swift in Sources */,
 				E2C32AAB22C20B710019AA8D /* UserAction.swift in Sources */,
 				E2D74B9122C1080200BC40C0 /* ProfileViewController.swift in Sources */,
+				E2094F0622C3701700ACB90D /* ProjectDependencyContainer.swift in Sources */,
 				E2D74B8B22C1050C00BC40C0 /* CellConfigurator.swift in Sources */,
 				E2D74BB222C1385900BC40C0 /* AsyncOperation.swift in Sources */,
 				E292EFAF22C17EF000983F7E /* ProjectCoverImageModel.swift in Sources */,
@@ -878,6 +885,7 @@
 				E292EFAB22C17E7200983F7E /* ProjectCoverImageCell.swift in Sources */,
 				E232FE4B22C0C91700ABA750 /* GenericDictionary.swift in Sources */,
 				E2C32AA222C205720019AA8D /* DependencyContainer.swift in Sources */,
+				E2094F0722C3701700ACB90D /* ProjectDependencyContainer.swift in Sources */,
 				E232FE5722C0D51800ABA750 /* Project.swift in Sources */,
 				E2C32AB222C2217B0019AA8D /* ProjectsAction.swift in Sources */,
 				E2D74B9A22C10B5A00BC40C0 /* CustomCollectionViewLayout.swift in Sources */,
@@ -893,6 +901,7 @@
 				E222A05022B0613F006CD8F0 /* Behance_ClientTests.swift in Sources */,
 				E232FE5122C0CA5600ABA750 /* Images.swift in Sources */,
 				E2C32A9F22C204FD0019AA8D /* AppDependencyContainer.swift in Sources */,
+				E2094F0822C370FD00ACB90D /* AppState.swift in Sources */,
 				E2D74BA822C1274B00BC40C0 /* ProjectItemCell.swift in Sources */,
 				E232FE4822C0C79B00ABA750 /* User.swift in Sources */,
 				E292EFCB22C1869C00983F7E /* ProjectOwnersModel.swift in Sources */,
@@ -918,6 +927,7 @@
 				E2C32A9B22C1FAEA0019AA8D /* ViewModelType.swift in Sources */,
 				E2C32A9C22C1FFCA0019AA8D /* ProjectViewModel.swift in Sources */,
 				E2D74BA122C1255300BC40C0 /* SocialItemModel.swift in Sources */,
+				E2094F0922C397CD00ACB90D /* DependencyProvider.swift in Sources */,
 				E24649F422C2DAAB00060361 /* ProfileViewDependencyContainer.swift in Sources */,
 				E292EFBD22C184CA00983F7E /* ProjectFieldsCell.swift in Sources */,
 				E292EFB922C1839E00983F7E /* ProjectBasicInfoItemModel.swift in Sources */,
