@@ -1,6 +1,9 @@
 # MVVM-Unidirectional-Data-Flow-RxSwift-Behance-Client
 
          Behance client to be
+         
+         Branches: master and v2
+         
          I wanted to use/show different approaches in this first version.
          Please read below to see what has been done, how it has been done.
          You will see todos for version 2 soon.
@@ -20,7 +23,7 @@
          view cells with Datasource, Delegates.
          
          //TODO:
-         - change dependency injection 
+         - change dependency injection  (DONE in branch v2)
          (see. LaunchViewModel injection to LaunchViewController via dependency container.)
          
          
@@ -33,7 +36,7 @@
          Liked it, used in one of my projects as well. One of my favorite approach using with RxSwift.
          
          //TODO:
-         - change dependency injection
+         - change dependency injection (Done in branch v2)
          
          
          TODO for version 2
