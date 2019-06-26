@@ -36,7 +36,7 @@
          Liked it, used in one of my projects as well. One of my favorite approach using with RxSwift.
          
          //TODO:
-         - change dependency injection
+         - change dependency injection (Done in branch v2)
          
          
          TODO for version 2
