@@ -23,7 +23,7 @@
          view cells with Datasource, Delegates.
          
          //TODO:
-         - change dependency injection  (DONE)
+         - change dependency injection  (DONE in branch v2)
          (see. LaunchViewModel injection to LaunchViewController via dependency container.)
          
          
