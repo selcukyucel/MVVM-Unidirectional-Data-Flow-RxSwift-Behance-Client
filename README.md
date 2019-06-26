@@ -1,6 +1,9 @@
 # MVVM-Unidirectional-Data-Flow-RxSwift-Behance-Client
 
          Behance client to be
+         
+         Branches: master and v2
+         
          I wanted to use/show different approaches in this first version.
          Please read below to see what has been done, how it has been done.
          You will see todos for version 2 soon.
