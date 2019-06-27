@@ -87,6 +87,10 @@
 		E2AA143422B063D8007D6343 /* RxStoreSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AA142F22B063D8007D6343 /* RxStoreSubscriber.swift */; };
 		E2AA143522B063D8007D6343 /* ObservableOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AA143022B063D8007D6343 /* ObservableOperators.swift */; };
 		E2AA143622B063D8007D6343 /* ObservableOperators.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AA143022B063D8007D6343 /* ObservableOperators.swift */; };
+		E2AC70B122C4C7E200C2C0F5 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AC70B022C4C7E200C2C0F5 /* Scene.swift */; };
+		E2AC70B222C4C7E200C2C0F5 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AC70B022C4C7E200C2C0F5 /* Scene.swift */; };
+		E2AC70B422C4C80900C2C0F5 /* Scene+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AC70B322C4C80900C2C0F5 /* Scene+Extension.swift */; };
+		E2AC70B522C4C80900C2C0F5 /* Scene+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AC70B322C4C80900C2C0F5 /* Scene+Extension.swift */; };
 		E2C32A9B22C1FAEA0019AA8D /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E205B08A22C1522500B3B8F7 /* ViewModelType.swift */; };
 		E2C32A9C22C1FFCA0019AA8D /* ProjectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2D74BB722C14BE600BC40C0 /* ProjectViewModel.swift */; };
 		E2C32A9E22C204FD0019AA8D /* AppDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C32A9D22C204FD0019AA8D /* AppDependencyContainer.swift */; };
@@ -228,6 +232,8 @@
 		E2AA142E22B063D8007D6343 /* StoreSubscriptionExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreSubscriptionExtensions.swift; sourceTree = "<group>"; };
 		E2AA142F22B063D8007D6343 /* RxStoreSubscriber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxStoreSubscriber.swift; sourceTree = "<group>"; };
 		E2AA143022B063D8007D6343 /* ObservableOperators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservableOperators.swift; sourceTree = "<group>"; };
+		E2AC70B022C4C7E200C2C0F5 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
+		E2AC70B322C4C80900C2C0F5 /* Scene+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Scene+Extension.swift"; sourceTree = "<group>"; };
 		E2C32A9D22C204FD0019AA8D /* AppDependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependencyContainer.swift; sourceTree = "<group>"; };
 		E2C32AA022C205720019AA8D /* DependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyContainer.swift; sourceTree = "<group>"; };
 		E2C32AA322C2097F0019AA8D /* LaunchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewModel.swift; sourceTree = "<group>"; };
@@ -448,6 +454,7 @@
 				E2D74BAB22C12FBB00BC40C0 /* UICollectionView+Extension.swift */,
 				E292EFA522C1548E00983F7E /* Observable+Extension.swift */,
 				E2C32AB622C284640019AA8D /* UIImageView+Extension.swift */,
+				E2AC70B322C4C80900C2C0F5 /* Scene+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -489,6 +496,7 @@
 				E2D74B9822C10B5A00BC40C0 /* CustomCollectionViewLayout.swift */,
 				E2D74BAE22C1376B00BC40C0 /* NetworkImageOperation.swift */,
 				E2D74BB122C1385900BC40C0 /* AsyncOperation.swift */,
+				E2AC70B022C4C7E200C2C0F5 /* Scene.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -849,6 +857,7 @@
 				E232FE5622C0D51800ABA750 /* Project.swift in Sources */,
 				E2D74B8E22C1058600BC40C0 /* CollectionCellConfigurator.swift in Sources */,
 				E2AA143322B063D8007D6343 /* RxStoreSubscriber.swift in Sources */,
+				E2AC70B422C4C80900C2C0F5 /* Scene+Extension.swift in Sources */,
 				E292EFC522C1866E00983F7E /* ProjectOwnerCell.swift in Sources */,
 				E2D74B9922C10B5A00BC40C0 /* CustomCollectionViewLayout.swift in Sources */,
 				E2D74BB822C14BE600BC40C0 /* ProjectViewModel.swift in Sources */,
@@ -856,6 +865,7 @@
 				E2F829F522B1254C00DE6BEE /* DependencyProvider.swift in Sources */,
 				E292EFB322C1832600983F7E /* ProjectBasicInfoCell.swift in Sources */,
 				E2D74BA722C1274B00BC40C0 /* ProjectItemCell.swift in Sources */,
+				E2AC70B122C4C7E200C2C0F5 /* Scene.swift in Sources */,
 				E2F829F222B124BD00DE6BEE /* LaunchViewController.swift in Sources */,
 				E232FE4722C0C79B00ABA750 /* User.swift in Sources */,
 				E292EFA622C1548E00983F7E /* Observable+Extension.swift in Sources */,
@@ -902,8 +912,10 @@
 				E232FE5122C0CA5600ABA750 /* Images.swift in Sources */,
 				E2C32A9F22C204FD0019AA8D /* AppDependencyContainer.swift in Sources */,
 				E2094F0822C370FD00ACB90D /* AppState.swift in Sources */,
+				E2AC70B522C4C80900C2C0F5 /* Scene+Extension.swift in Sources */,
 				E2D74BA822C1274B00BC40C0 /* ProjectItemCell.swift in Sources */,
 				E232FE4822C0C79B00ABA750 /* User.swift in Sources */,
+				E2AC70B222C4C7E200C2C0F5 /* Scene.swift in Sources */,
 				E292EFCB22C1869C00983F7E /* ProjectOwnersModel.swift in Sources */,
 				E2AA143422B063D8007D6343 /* RxStoreSubscriber.swift in Sources */,
 				E2D74BB622C14B0D00BC40C0 /* ProjectViewController.swift in Sources */,

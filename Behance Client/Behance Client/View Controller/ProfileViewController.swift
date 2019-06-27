@@ -41,8 +41,6 @@ class ProfileViewController: UIViewController {
         super.viewDidDisappear(animated)
         self.disposable.dispose()
     }
-    
-    
 }
 
 //MARK: COLLECTION DATASOURCE
@@ -108,7 +106,7 @@ extension ProfileViewController : UICollectionViewDelegate {
             let cell = item.view() as! ProjectItemCell
             
             if let model = cell.model {
-                // Dispatch/Pus Project Screen
+                // Dispatch/Push Project Screen
                 container.reduxStore.dispatch(ProjectAction(project: model.project))
             }
         }

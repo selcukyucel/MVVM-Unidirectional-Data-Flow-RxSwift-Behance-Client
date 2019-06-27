@@ -23,9 +23,8 @@ class ProjectDependencyContainer : ProjectViewDependencyProvider {
     }
     
     func makeProfileViewController(viewState: ProfileViewState) -> ProfileViewController {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        let profileVC   = storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
+        let profileVC   = Scene.profile.viewController() as! ProfileViewController
         
         let dependencyContainer = ProfileViewDependencyContainer(store: self.reduxStore)
         
